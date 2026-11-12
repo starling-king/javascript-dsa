@@ -10,7 +10,9 @@ class Node {
 class BinaryTree{
 
     constructor() {
-    this.idx=-1
+        this.idx = -1;
+        this.request = []
+        // this.front = null
     }
     
     buildTree(preOrder) {  //O(n)
@@ -48,7 +50,7 @@ class BinaryTree{
 
     }
 
-    PostOrderTreversal(root) {
+    PostOrderTreversal(root) {  //O(n)
         
         if (root == null) return;
 
@@ -59,8 +61,16 @@ class BinaryTree{
 
     }
 
-    LevelTreversal(root) {
-        
+    LevelTreversal(root) {  //O(n)
+        this.request.push(root);
+
+        while (this.request.length > 0) {
+            let current = this.request.shift();
+            // this.request.pop()
+            console.log(current.data)
+            if(current.left!=null) this.request.push(current.left)
+            if(current.right!=null) this.request.push(current.right)
+        }
     }
 
 }
@@ -76,3 +86,4 @@ console.log("The RIGHT value is : ", root.right.data)
 console.log(tree.PreOrderTriversal(root))
 console.log(tree.InOrderTreversal(root))
 console.log(tree.PostOrderTreversal(root))
+console.log(tree.LevelTreversal(root))
