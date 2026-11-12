@@ -13,7 +13,7 @@ class BinaryTree{
     this.idx=-1
     }
     
-    buildTree(preOrder) {
+    buildTree(preOrder) {  //O(n)
         
         this.idx++;
 
@@ -27,15 +27,40 @@ class BinaryTree{
 
     }
 
-    PreOrderTriversal(root) {
+    PreOrderTriversal(root) { //O(n)
     
-        if (root == null) return;
+        if (root === null || root === undefined) return;
 
         console.log(root.data)
         this.PreOrderTriversal(root.left)
         this.PreOrderTriversal(root.right)
 
 
+    }
+
+    InOrderTreversal(root) {
+        
+        if(root===null || root === undefined) return
+
+        this.InOrderTreversal(root.left);
+        console.log(root.data)
+        this.InOrderTreversal(root.right)
+
+    }
+
+    PostOrderTreversal(root) {
+        
+        if (root == null) return;
+
+        
+        this.PostOrderTreversal(root.left);
+        this.PostOrderTreversal(root.right)
+        console.log(root.data)
+
+    }
+
+    LevelTreversal(root) {
+        
     }
 
 }
@@ -49,3 +74,5 @@ console.log("The LEFT value is : ",root.left.data)
 console.log("The RIGHT value is : ", root.right.data)
 
 console.log(tree.PreOrderTriversal(root))
+console.log(tree.InOrderTreversal(root))
+console.log(tree.PostOrderTreversal(root))
