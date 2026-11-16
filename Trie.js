@@ -1,71 +1,40 @@
 class Node{
-
     constructor() {
-        
-        this.childern=[]
-        this.eow=false;
-
-
+        this.eow = false;
+        this.children={}
     }
-
 }
 
-class Trie {
-
-    insert(root,word) {     //O(L)
+class Tries{
+    constructor() {
+        this.root = new Node()
+    }
+    
+    create(words) {
+        let currentroot = this.root
         
-        // let root = root;
-        
-        for (let i = 0; i < word.length; i++){
-            let char = word[i];
-
-            if (root.childern[char] == null) {
-                root.childern[char] = new Node();
-            }
-
-            if (i == word.length - 1) {
-                root.eow = true;
-            }
-
-            root = root.childern[char]
+        if (currentroot == null) {
+            return currentroot=new Node()
         }
 
-        // root.eow = true;
-
-    }
-
-    search(root, key) {
-        
-        for (let i = 0; i < key.length; i++){
-            
-            let idx = key[i];
-
-            if (root.childern[idx] == null) {
-                return false
+        for (let char of words) {
+            if (currentroot.children[char] == null) {
+                currentroot.children[char]=new Node()
             }
-
-            if (i == key.length - 1 && root.childern[idx].eow==false) {
-                return false;
-            }
-
+            currentroot = currentroot.children[char]
         }
+        currentroot.eow = true;
 
-        return true
 
     }
 
 }
 
+const tree=new Tries()
 
-const arr = ['The', 'a','there','their','any']
-const root = new Node()
-const myTrie = new Trie();
+words = ['the', 'a', 'there', 'their', 'any']
 
-for (let word of arr) {
-    myTrie.insert(word, root);
+
+for (let i = 0; i < words.length; i++){
+    tree.create(words[i]);
 }
-
-console.log(myTrie.search(root,'there'));
-console.log(myTrie.search(root,'a'));
-console.log(myTrie.search(root,'an'));
-console.log(myTrie.search(root,'thor'));
