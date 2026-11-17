@@ -73,6 +73,25 @@ class BinaryTree{
         }
     }
 
+    height(root) {
+
+        if (root == null) return 0;
+
+        let leftHight = this.height(root.left)
+        let rightHight=this.height(root.right)
+
+        return Math.max(leftHight,rightHight) + 1
+    }
+    count(root) {
+
+        if (root == null) return 0;
+
+        let leftCount = this.count(root.left)
+        let rightCount=this.count(root.right)
+
+        return (leftCount+rightCount) + 1
+    }
+
 }
 
 const preOrder = [1, 2, -1,-1,3, 4, -1, -1, 5, -1, -1];
@@ -87,3 +106,6 @@ console.log(tree.PreOrderTriversal(root))
 console.log(tree.InOrderTreversal(root))
 console.log(tree.PostOrderTreversal(root))
 console.log(tree.LevelTreversal(root))
+
+console.log(tree.height(root))
+console.log(tree.count(root))
