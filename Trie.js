@@ -47,7 +47,7 @@ class Tries{
 
 const tree=new Tries()
 
-words = ['the', 'a', 'there', 'their', 'any']
+const words = ['the', 'a', 'there', 'their', 'any']
 
 for (let i = 0; i < words.length; i++){
     tree.create(words[i]);
